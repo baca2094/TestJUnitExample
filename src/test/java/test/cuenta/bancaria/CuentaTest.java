@@ -76,7 +76,7 @@ class CuentaTest {
     @Test
     public void testDepositSuccessCLP() {
         // Given
-        int montoADepositar = 1000000;
+        int montoADepositar = 5;
         int saldoInicialCLP = cuentaDePrueba.getSaldoCLP();
         int saldoEsperadoCLP = saldoInicialCLP+montoADepositar;
 
@@ -98,7 +98,7 @@ class CuentaTest {
 
         // When
         boolean resultado = cuentaDePrueba.deposit(montoADepositar, true);
-        int saldoFinalUSD = cuentaDePrueba.getSaldoCLP();
+        int saldoFinalUSD = cuentaDePrueba.getSaldoUSD();
 
         // Then
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "Falla saldo al depositar");
@@ -177,8 +177,8 @@ class CuentaTest {
         int saldoEsperadoCLP = saldoInicialCLP+montoADepositar;
 
         // When
-        boolean resultado = cuentaDePrueba.deposit(montoADepositar, false);
-        int saldoFinalCLP = cuentaDePrueba.getSaldoCLP();
+        boolean resultado = cuentaVacia.deposit(montoADepositar, false);
+        int saldoFinalCLP = cuentaVacia.getSaldoCLP();
 
         // Then
         assertEquals(saldoEsperadoCLP, saldoFinalCLP, "No se deposita el monto máximo en CLP (en cuenta vacía)");
@@ -189,7 +189,7 @@ class CuentaTest {
     public void testDepositMaxAmountCLP() {
         // Given
         int montoADepositar = Integer.MAX_VALUE;
-        int saldoInicialCLP = cuentaVacia.getSaldoCLP();
+        int saldoInicialCLP = cuentaDePrueba.getSaldoCLP();
 
         // When
         boolean resultado = cuentaDePrueba.deposit(montoADepositar, false);
@@ -208,8 +208,8 @@ class CuentaTest {
         int saldoEsperadoUSD = saldoInicialUSD+montoADepositar;
 
         // When
-        boolean resultado = cuentaDePrueba.deposit(montoADepositar, false);
-        int saldoFinalUSD = cuentaDePrueba.getSaldoCLP();
+        boolean resultado = cuentaVacia.deposit(montoADepositar, true);
+        int saldoFinalUSD = cuentaVacia.getSaldoUSD();
 
         // Then
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "No se deposita el monto máximo en USD (en cuenta vacía)");
@@ -220,10 +220,10 @@ class CuentaTest {
     public void testDepositMaxAmountUSD() {
         // Given
         int montoADepositar = Integer.MAX_VALUE;
-        int saldoInicialUSD = cuentaVacia.getSaldoUSD();
+        int saldoInicialUSD = cuentaDePrueba.getSaldoUSD();
 
         // When
-        boolean resultado = cuentaDePrueba.deposit(montoADepositar, false);
+        boolean resultado = cuentaDePrueba.deposit(montoADepositar, true);
         int saldoFinalUSD = cuentaDePrueba.getSaldoUSD();
 
         // Then

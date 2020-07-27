@@ -57,11 +57,23 @@ public class Cuenta {
     // cuentaEnUSD = false => cuenta en CLP
     public boolean deposit(int amount, boolean cuentaEnUSD) {
         boolean success = false;
-        if (cuentaEnUSD) {
-
+        // Monto negativo
+        if (amount < 0) {
+            return success;
         }
-        else {
-
+        // Overflow depósito
+        try {
+            // Depositar según tipo de cuenta
+            if (cuentaEnUSD) {
+                this.saldoUSD = Math.addExact(this.saldoUSD, amount);
+            }
+            else {
+                this.saldoCLP = Math.addExact(this.saldoCLP, amount);
+            }
+            success = true;
+        }
+        catch (ArithmeticException e) {
+            return success;
         }
         return success;
     }
