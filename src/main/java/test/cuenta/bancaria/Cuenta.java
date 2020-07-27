@@ -7,19 +7,21 @@ public class Cuenta {
     private int saldoCLP;
     private int saldoUSD;
     private int numOperacionesSesion;
-
+    private int numSesiones;
 
     // Constructores
     public Cuenta() {
         this.saldoCLP = 1000000;
         this.saldoUSD = 1000;
         this.numOperacionesSesion = 0;
+        this.numSesiones = 0;
     }
 
     public Cuenta(int saldoCLPInicial, int saldoUSDInicial) {
         this.saldoCLP = saldoCLPInicial;
         this.saldoUSD = saldoUSDInicial;
         this.numOperacionesSesion = 0;
+        this.numSesiones = 0;
     }
 
     // Getters
@@ -33,6 +35,10 @@ public class Cuenta {
 
     public int getNumOperacionesSesion() {
         return numOperacionesSesion;
+    }
+
+    public int getNumSesiones() {
+        return numSesiones;
     }
 
     // Equals & hashCode

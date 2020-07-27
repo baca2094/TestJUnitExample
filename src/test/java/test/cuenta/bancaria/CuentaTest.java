@@ -79,6 +79,16 @@ class CuentaTest {
         assertEquals(0, nTransacciones);
     }
 
+    @Test
+    public void testGetNumSesiones() {
+        // Given
+
+        // When
+        int nSesiones = cuentaDePrueba.getNumOperacionesSesion();
+        // Then
+        assertEquals(0, nSesiones);
+    }
+
     // Depósitos
     @Test
     public void testDepositSuccessCLP() {
@@ -440,6 +450,4 @@ class CuentaTest {
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "El saldo cambia");
         assertEquals(false, resultado, "Resultado inesperado al retirar");
     }
-
-
 }
