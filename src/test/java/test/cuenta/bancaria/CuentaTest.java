@@ -84,7 +84,7 @@ class CuentaTest {
         // Given
 
         // When
-        int nSesiones = cuentaDePrueba.getNumOperacionesSesion();
+        int nSesiones = cuentaDePrueba.getNumSesiones();
         // Then
         assertEquals(0, nSesiones);
     }
@@ -102,7 +102,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoCLP, saldoFinalCLP, "Falla saldo al depositar");
-        assertEquals(true, resultado, "Resultado inesperado al depositar");
+        assertTrue(resultado, "Resultado inesperado al depositar");
     }
 
     @Test
@@ -117,7 +117,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "Falla saldo al depositar");
-        assertEquals(true, resultado, "Resultado inesperado al depositar");
+        assertTrue(resultado, "Resultado inesperado al depositar");
     }
 
     @Test
@@ -131,7 +131,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoInicialCLP, saldoFinalCLP, "Monto cambia al depositar saldo en CLP igual a 0");
-        assertEquals(true, resultado, "Resultado inesperado al depositar");
+        assertTrue(resultado, "Resultado inesperado al depositar");
     }
 
     @Test
@@ -145,7 +145,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoInicialUSD, saldoFinalUSD, "Monto cambia al depositar saldo en USD igual a 0");
-        assertEquals(true, resultado, "Resultado inesperado al depositar");
+        assertTrue(resultado, "Resultado inesperado al depositar");
     }
 
     @Test
@@ -161,7 +161,7 @@ class CuentaTest {
         // Then
         assertEquals(saldoInicialCLP, saldoFinalCLP, "Monto cambia al depositar saldo en CLP menor a 0");
         assertNotEquals(saldoEsperadoFalsoCLP, saldoFinalCLP, "Monto baja al depositar saldo en CLP menor a 0");
-        assertEquals(false, resultado, "Resultado inesperado al depositar");
+        assertFalse(resultado, "Resultado inesperado al depositar");
     }
 
     @Test
@@ -177,37 +177,35 @@ class CuentaTest {
         // Then
         assertEquals(saldoInicialUSD, saldoFinalUSD, "Monto cambia al depositar saldo en USD menor a 0");
         assertNotEquals(saldoEsperadoFalsoUSD, saldoFinalUSD, "Monto baja al depositar saldo en USD menor a 0");
-        assertEquals(false, resultado, "Resultado inesperado al depositar");
+        assertFalse(resultado, "Resultado inesperado al depositar");
     }
 
     @Test
     public void testDepositMaxAmountCLP() {
         // Given
         int montoADepositar = Integer.MAX_VALUE;
-        int saldoEsperadoCLP = montoADepositar;
 
         // When
         boolean resultado = cuentaVacia.deposit(montoADepositar, false);
         int saldoFinalCLP = cuentaVacia.getSaldoCLP();
 
         // Then
-        assertEquals(saldoEsperadoCLP, saldoFinalCLP, "No se deposita el monto máximo en CLP (en cuenta vacía)");
-        assertEquals(true, resultado, "Resultado inesperado al depositar");
+        assertEquals(montoADepositar, saldoFinalCLP, "No se deposita el monto máximo en CLP (en cuenta vacía)");
+        assertTrue(resultado, "Resultado inesperado al depositar");
     }
 
     @Test
     public void testDepositMaxAmountUSD() {
         // Given
         int montoADepositar = Integer.MAX_VALUE;
-        int saldoEsperadoUSD = montoADepositar;
 
         // When
         boolean resultado = cuentaVacia.deposit(montoADepositar, true);
         int saldoFinalUSD = cuentaVacia.getSaldoUSD();
 
         // Then
-        assertEquals(saldoEsperadoUSD, saldoFinalUSD, "No se deposita el monto máximo en USD (en cuenta vacía)");
-        assertEquals(true, resultado, "Resultado inesperado al depositar");
+        assertEquals(montoADepositar, saldoFinalUSD, "No se deposita el monto máximo en USD (en cuenta vacía)");
+        assertTrue(resultado, "Resultado inesperado al depositar");
     }
 
     @Test
@@ -221,7 +219,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoInicialCLP, saldoFinalCLP, "Cambia el monto al intentar depositar más de lo permitido");
-        assertEquals(false, resultado, "Resultado inesperado al depositar");
+        assertFalse(resultado, "Resultado inesperado al depositar");
     }
 
     @Test
@@ -235,7 +233,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoInicialUSD, saldoFinalUSD, "Cambia el monto al intentar depositar más de lo permitido");
-        assertEquals(false, resultado, "Resultado inesperado al depositar");
+        assertFalse(resultado, "Resultado inesperado al depositar");
     }
 
     // Retiros
@@ -251,7 +249,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoCLP, saldoFinalCLP, "Falla saldo al retirar");
-        assertEquals(true, resultado, "Resultado inesperado al retirar");
+        assertTrue(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -266,7 +264,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "Falla saldo al retirar");
-        assertEquals(true, resultado, "Resultado inesperado al retirar");
+        assertTrue(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -280,7 +278,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoInicialCLP, saldoFinalCLP, "Monto cambia al retirar saldo en CLP igual a 0");
-        assertEquals(true, resultado, "Resultado inesperado al retirar");
+        assertTrue(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -294,7 +292,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoInicialUSD, saldoFinalUSD, "Monto cambia al retirar saldo en USD igual a 0");
-        assertEquals(true, resultado, "Resultado inesperado al retirar");
+        assertTrue(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -310,7 +308,7 @@ class CuentaTest {
         // Then
         assertEquals(saldoInicialCLP, saldoFinalCLP, "Monto cambia al retirar saldo en CLP menor a 0");
         assertNotEquals(saldoEsperadoFalsoCLP, saldoFinalCLP, "Monto baja al retirar saldo en CLP menor a 0");
-        assertEquals(false, resultado, "Resultado inesperado al retirar");
+        assertFalse(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -326,7 +324,7 @@ class CuentaTest {
         // Then
         assertEquals(saldoInicialUSD, saldoFinalUSD, "Monto cambia al retirar saldo en USD menor a 0");
         assertNotEquals(saldoEsperadoFalsoUSD, saldoFinalUSD, "Monto baja al retirar saldo en USD menor a 0");
-        assertEquals(false, resultado, "Resultado inesperado al retirar");
+        assertFalse(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -342,7 +340,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoCLP, saldoFinalCLP, "No se retira el saldo completo");
-        assertEquals(true, resultado, "Resultado inesperado al retirar");
+        assertTrue(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -358,7 +356,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "No se retira el saldo completo");
-        assertEquals(true, resultado, "Resultado inesperado al retirar");
+        assertTrue(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -373,7 +371,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoCLP, saldoFinalCLP, "El saldo cambia");
-        assertEquals(false, resultado, "Resultado inesperado al retirar");
+        assertFalse(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -388,7 +386,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "El saldo cambia");
-        assertEquals(false, resultado, "Resultado inesperado al retirar");
+        assertFalse(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -403,7 +401,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoCLP, saldoFinalCLP, "No se retira el monto máximo");
-        assertEquals(true, resultado, "Resultado inesperado al retirar");
+        assertTrue(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -418,7 +416,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "No se retira el monto máximo");
-        assertEquals(true, resultado, "Resultado inesperado al retirar");
+        assertTrue(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -433,7 +431,7 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoCLP, saldoFinalCLP, "El saldo cambia");
-        assertEquals(false, resultado, "Resultado inesperado al retirar");
+        assertFalse(resultado, "Resultado inesperado al retirar");
     }
 
     @Test
@@ -448,6 +446,53 @@ class CuentaTest {
 
         // Then
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "El saldo cambia");
-        assertEquals(false, resultado, "Resultado inesperado al retirar");
+        assertFalse(resultado, "Resultado inesperado al retirar");
+    }
+
+    // Pruebas métodos manejo de sesión
+    @Test
+    public void testResetNumOperacionesSesion() {
+        // Given
+
+        // When
+        cuentaDePrueba.incrementNumOperacionesSesion();
+        cuentaDePrueba.resetNumOperacionesSesion();
+
+        // Then
+        assertEquals(0, cuentaDePrueba.getNumOperacionesSesion());
+    }
+
+    @Test
+    public void testIncrementNumOperacionesSesion() {
+        // Given
+
+        // When
+        cuentaDePrueba.incrementNumOperacionesSesion();
+
+        // Then
+        assertEquals(1, cuentaDePrueba.getNumOperacionesSesion());
+    }
+
+    @Test
+    public void testResetNumSesiones() {
+        // Given
+
+        // When
+        cuentaDePrueba.incrementNumSesiones();
+        cuentaDePrueba.resetNumSesiones();
+
+        // Then
+        assertEquals(0, cuentaDePrueba.getNumSesiones());
+    }
+
+    @Test
+    public void testIncrementNumSesiones() {
+        // Given
+
+        // When
+        cuentaDePrueba.incrementNumSesiones();
+
+        // Then
+        assertEquals(1, cuentaDePrueba.getNumSesiones());
     }
 }

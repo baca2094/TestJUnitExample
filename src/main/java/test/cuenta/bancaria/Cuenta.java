@@ -109,4 +109,20 @@ public class Cuenta {
         return success;
     }
 
+    // Manejo de sesiones
+    public void resetNumOperacionesSesion() {
+        this.numOperacionesSesion = 0;
+    }
+
+    public void incrementNumOperacionesSesion() {
+        this.numOperacionesSesion++;
+    }
+
+    public void resetNumSesiones() {
+        this.numSesiones = 0;
+    }
+
+    public void incrementNumSesiones() {
+        this.numSesiones++;
+    }
 }
