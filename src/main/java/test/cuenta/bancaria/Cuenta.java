@@ -6,16 +6,20 @@ public class Cuenta {
 
     private int saldoCLP;
     private int saldoUSD;
+    private int numTransaccionesSesion;
+
 
     // Constructores
     public Cuenta() {
         this.saldoCLP = 1000000;
         this.saldoUSD = 1000;
+        this.numTransaccionesSesion = 0;
     }
 
     public Cuenta(int saldoCLPInicial, int saldoUSDInicial) {
         this.saldoCLP = saldoCLPInicial;
         this.saldoUSD = saldoUSDInicial;
+        this.numTransaccionesSesion = 0;
     }
 
     // Getters
@@ -25,6 +29,10 @@ public class Cuenta {
 
     public int getSaldoUSD() {
         return saldoUSD;
+    }
+
+    public int getNumTransaccionesSesion() {
+        return numTransaccionesSesion;
     }
 
     // Equals & hashCode
@@ -43,13 +51,33 @@ public class Cuenta {
     }
 
     // Methods
-    public void deposit(int amount, String tipo) {
 
+    // Depósito
+    // cuentaEnUSD = true => cuenta en USD
+    // cuentaEnUSD = false => cuenta en CLP
+    public boolean deposit(int amount, boolean cuentaEnUSD) {
+        boolean success = false;
+        if (cuentaEnUSD) {
 
+        }
+        else {
+
+        }
+        return success;
     }
 
-    public void withdraw(int amount, String tipo) {
+    // Retiro
+    // cuentaEnUSD = true => cuenta en USD
+    // cuentaEnUSD = false => cuenta en CLP
+    public boolean withdraw(int amount, boolean cuentaEnUSD) {
+        boolean success = false;
+        if (cuentaEnUSD) {
 
+        }
+        else {
+
+        }
+        return success;
     }
 
 }
