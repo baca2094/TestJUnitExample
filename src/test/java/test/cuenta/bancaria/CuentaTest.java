@@ -247,7 +247,7 @@ class CuentaTest {
     @Test
     public void testWithdrawSuccessUSD() {
         // Given
-        int montoASacar = 500;
+        int montoASacar = 10;
         int saldoEsperadoUSD = saldoInicialUSD-montoASacar;
 
         // When
@@ -322,12 +322,13 @@ class CuentaTest {
     @Test
     public void testWithdrawSaldoCLP() {
         // Given
-        int montoARetirar = saldoInicialCLP;
+        Cuenta cuentaConSaldoMenorMaxRetiro = new Cuenta(10, 10);
+        int montoARetirar = 10;
         int saldoEsperadoCLP = 0;
 
         // When
-        boolean resultado = cuentaDePrueba.withdraw(montoARetirar, false);
-        int saldoFinalCLP = cuentaDePrueba.getSaldoCLP();
+        boolean resultado = cuentaConSaldoMenorMaxRetiro.withdraw(montoARetirar, false);
+        int saldoFinalCLP = cuentaConSaldoMenorMaxRetiro.getSaldoCLP();
 
         // Then
         assertEquals(saldoEsperadoCLP, saldoFinalCLP, "No se retira el saldo completo");
@@ -337,12 +338,13 @@ class CuentaTest {
     @Test
     public void testWithdrawSaldoUSD() {
         // Given
-        int montoARetirar = saldoInicialUSD;
+        Cuenta cuentaConSaldoMenorMaxRetiro = new Cuenta(10, 10);
+        int montoARetirar = 10;
         int saldoEsperadoUSD = 0;
 
         // When
-        boolean resultado = cuentaDePrueba.withdraw(montoARetirar, true);
-        int saldoFinalUSD = cuentaDePrueba.getSaldoUSD();
+        boolean resultado = cuentaConSaldoMenorMaxRetiro.withdraw(montoARetirar, true);
+        int saldoFinalUSD = cuentaConSaldoMenorMaxRetiro.getSaldoUSD();
 
         // Then
         assertEquals(saldoEsperadoUSD, saldoFinalUSD, "No se retira el saldo completo");

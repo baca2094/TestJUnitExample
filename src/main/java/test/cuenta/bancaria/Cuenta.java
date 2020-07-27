@@ -83,12 +83,23 @@ public class Cuenta {
     // cuentaEnUSD = false => cuenta en CLP
     public boolean withdraw(int amount, boolean cuentaEnUSD) {
         boolean success = false;
+        // Monto negativo
+        if (amount < 0) {
+            return success;
+        }
         if (cuentaEnUSD) {
-
+            if (amount > 100) {
+                return success;
+            }
+            this.saldoUSD -= amount;
         }
         else {
-
+            if (amount > 200000) {
+                return success;
+            }
+            this.saldoCLP -= amount;
         }
+        success = true;
         return success;
     }
 
