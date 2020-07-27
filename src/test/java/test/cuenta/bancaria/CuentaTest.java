@@ -63,11 +63,11 @@ class CuentaTest {
     }
 
     @Test
-    public void testGetNumTransaccionesSesion() {
+    public void testGetNumOperacionesSesion() {
         // Given
 
         // When
-        int nTransacciones = cuentaDePrueba.getNumTransaccionesSesion();
+        int nTransacciones = cuentaDePrueba.getNumOperacionesSesion();
 
         // Then
         assertEquals(0, nTransacciones);
