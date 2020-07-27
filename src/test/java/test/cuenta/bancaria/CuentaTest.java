@@ -35,21 +35,29 @@ class CuentaTest {
     @Test
     public void testGetSaldoCLP() {
         // Given
+        int saldoInicialCLP = 1000000;
+        int saldoInicialFalsoCLP = 500;
 
         // When
+        int saldoCuenta = cuentaDePrueba.getSaldoCLP();
 
         // Then
-
+        assertEquals(saldoInicialCLP, saldoCuenta, "Falla al obtener saldo esperado en CLP");
+        assertNotEquals(saldoInicialFalsoCLP, saldoCuenta, "Falla al obtener saldo distinto en CLP");
     }
 
     @Test
     public void testGetSaldoUSD() {
         // Given
+        int saldoInicialUSD = 1000;
+        int saldoInicialFalsoUSD = 500;
 
         // When
+        int saldoCuenta = cuentaDePrueba.getSaldoUSD();
 
         // Then
-
+        assertEquals(saldoInicialUSD, saldoCuenta, "Falla al obtener saldo esperado en USD");
+        assertNotEquals(saldoInicialFalsoUSD, saldoCuenta, "Falla al obtener saldo distinto en USD");
     }
 
     @Test
