@@ -481,10 +481,27 @@ class CuentaTest {
             // Given
 
             // When
-            cuentaDePrueba.incrementNumOperacionesSesion();
+            boolean resultado = cuentaDePrueba.incrementNumOperacionesSesion();
 
             // Then
-            assertEquals(1, cuentaDePrueba.getNumOperacionesSesion());
+            assertEquals(1, cuentaDePrueba.getNumOperacionesSesion(), "No se incrementó el número");
+            assertTrue(resultado, "El resultado fue inesperado");
+        }
+
+        @Test
+        public void testIncrementNumOperacionesSesionWhenAtMax() {
+            // Given
+
+            // When
+            cuentaDePrueba.incrementNumOperacionesSesion();
+            cuentaDePrueba.incrementNumOperacionesSesion();
+            cuentaDePrueba.incrementNumOperacionesSesion();
+            cuentaDePrueba.incrementNumOperacionesSesion();
+            boolean resultado = cuentaDePrueba.incrementNumOperacionesSesion();
+
+            // Then
+            assertEquals(4, cuentaDePrueba.getNumOperacionesSesion(), "Se incrementó el número de operaciones");
+            assertFalse(resultado);
         }
 
         @Test
@@ -504,10 +521,26 @@ class CuentaTest {
             // Given
 
             // When
-            cuentaDePrueba.incrementNumSesiones();
+            boolean resultado = cuentaDePrueba.incrementNumSesiones();
 
             // Then
-            assertEquals(1, cuentaDePrueba.getNumSesiones());
+            assertEquals(1, cuentaDePrueba.getNumSesiones(), "No se incrementó el número");
+            assertTrue(resultado, "El resultado fue inesperado");
+        }
+
+        @Test
+        public void testIncrementNumSesionesWhenAtMax() {
+            // Given
+
+            // When
+            cuentaDePrueba.incrementNumSesiones();
+            cuentaDePrueba.incrementNumSesiones();
+            cuentaDePrueba.incrementNumSesiones();
+            boolean resultado = cuentaDePrueba.incrementNumSesiones();
+
+            // Then
+            assertEquals(3, cuentaDePrueba.getNumSesiones(), "Se incrementó el número de sesiones");
+            assertFalse(resultado);
         }
     }
 }

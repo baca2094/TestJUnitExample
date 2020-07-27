@@ -114,16 +114,24 @@ public class Cuenta {
         this.numOperacionesSesion = 0;
     }
 
-    public void incrementNumOperacionesSesion() {
+    public boolean incrementNumOperacionesSesion() {
+        if (this.numOperacionesSesion == 4) {
+            return false;
+        }
         this.numOperacionesSesion++;
+        return true;
     }
 
     public void resetNumSesiones() {
         this.numSesiones = 0;
     }
 
-    public void incrementNumSesiones() {
+    public boolean incrementNumSesiones() {
+        if (this.numSesiones == 3) {
+            return false;
+        }
         this.numSesiones++;
+        return true;
     }
 
 
