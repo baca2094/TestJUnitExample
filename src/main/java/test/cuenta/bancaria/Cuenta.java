@@ -2,6 +2,8 @@ package test.cuenta.bancaria;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Cuenta {
 
@@ -159,6 +161,9 @@ public class Cuenta {
     // 1: Depósito
     // -1: Retiro
     public void agregarAHistorial(int tipoTransaccion) {
+        String dateTimeActual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS"));
+        dateTimeActual = "["+dateTimeActual+"]";
+        System.out.println(dateTimeActual);
         switch (tipoTransaccion) {
             // Creación cuenta
             case (0): {
