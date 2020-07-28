@@ -11,7 +11,7 @@ public class Cuenta {
     private int saldoUSD;
     private int numOperacionesSesion;
     private int numSesiones;
-    private ArrayList<String> historialTransacciones;
+    private final ArrayList<String> historialTransacciones;
 
     // Constructores
     public Cuenta() {
@@ -169,7 +169,7 @@ public class Cuenta {
 
         // Manejo historial según tipo transacción
         String log = dateTimeActual+" La cuenta ha sido creada. Saldo inicial: CLP "+
-                Integer.toString(this.saldoCLP)+ " USD "+Integer.toString(this.saldoUSD);
+                this.saldoCLP + " USD "+ this.saldoUSD;
         this.historialTransacciones.add(log);
     }
 
@@ -195,15 +195,15 @@ public class Cuenta {
 
         // Depósito
         if (tipoTransaccion == 1) {
-            log = dateTimeActual+" Realizado depósito de "+cuenta+" "+ Integer.toString(monto)+
-                    ". Saldo actual: CLP "+Integer.toString(this.saldoCLP)+
-                    " USD "+Integer.toString(this.saldoUSD);
+            log = dateTimeActual+" Realizado depósito de "+cuenta+" "+ monto +
+                    ". Saldo actual: CLP "+ this.saldoCLP +
+                    " USD "+ this.saldoUSD;
         }
         // Retiro
         else if (tipoTransaccion == -1) {
-            log = dateTimeActual+" Realizado retiro de "+cuenta+" "+ Integer.toString(monto)+
-                    ". Saldo actual: CLP "+Integer.toString(this.saldoCLP)+
-                    " USD "+Integer.toString(this.saldoUSD);
+            log = dateTimeActual+" Realizado retiro de "+cuenta+" "+ monto +
+                    ". Saldo actual: CLP "+ this.saldoCLP +
+                    " USD "+ this.saldoUSD;
         }
 
         this.historialTransacciones.add(log);
