@@ -1,5 +1,6 @@
 package test.cuenta.bancaria;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Cuenta {
@@ -8,6 +9,7 @@ public class Cuenta {
     private int saldoUSD;
     private int numOperacionesSesion;
     private int numSesiones;
+    private ArrayList<String> historialTransacciones;
 
     // Constructores
     public Cuenta() {
@@ -15,6 +17,8 @@ public class Cuenta {
         this.saldoUSD = 1000;
         this.numOperacionesSesion = 0;
         this.numSesiones = 0;
+        this.historialTransacciones = new ArrayList<String>();
+        this.agregarAHistorial(0);
     }
 
     public Cuenta(int saldoCLPInicial, int saldoUSDInicial) {
@@ -22,6 +26,8 @@ public class Cuenta {
         this.saldoUSD = saldoUSDInicial;
         this.numOperacionesSesion = 0;
         this.numSesiones = 0;
+        this.historialTransacciones = new ArrayList<String>();
+        this.agregarAHistorial(0);
     }
 
     // Getters
@@ -39,6 +45,10 @@ public class Cuenta {
 
     public int getNumSesiones() {
         return numSesiones;
+    }
+
+    public ArrayList<String> getHistorialTransacciones() {
+        return historialTransacciones;
     }
 
     // Equals & hashCode
@@ -61,6 +71,9 @@ public class Cuenta {
     // Depósito
     // cuentaEnUSD = true => cuenta en USD
     // cuentaEnUSD = false => cuenta en CLP
+    // Retorna:
+    // true = operación fue exitosa
+    // false = no se pudo realizar la operación
     public boolean deposit(int amount, boolean cuentaEnUSD) {
         boolean success = false;
         // Monto negativo
@@ -81,12 +94,16 @@ public class Cuenta {
         catch (ArithmeticException e) {
             return success;
         }
+        // Operación exitosa
         return success;
     }
 
     // Retiro
     // cuentaEnUSD = true => cuenta en USD
     // cuentaEnUSD = false => cuenta en CLP
+    // Retorna:
+    // true = operación fue exitosa
+    // false = no se pudo realizar la operación
     public boolean withdraw(int amount, boolean cuentaEnUSD) {
         boolean success = false;
         // Monto negativo
@@ -105,6 +122,7 @@ public class Cuenta {
             }
             this.saldoCLP -= amount;
         }
+        // Operación exitosa
         success = true;
         return success;
     }
@@ -134,5 +152,26 @@ public class Cuenta {
         return true;
     }
 
+    // Historial de transacciones
 
+    // Según tipo de transacción:
+    // 0: Creación
+    // 1: Depósito
+    // -1: Retiro
+    public void agregarAHistorial(int tipoTransaccion) {
+        switch (tipoTransaccion) {
+            // Creación cuenta
+            case (0): {
+
+            }
+            // Depósito
+            case (1): {
+
+            }
+            // Retiro
+            case (-1): {
+
+            }
+        }
+    }
 }

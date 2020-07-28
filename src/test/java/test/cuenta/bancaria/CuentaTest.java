@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CuentaTest {
@@ -541,6 +543,47 @@ class CuentaTest {
             // Then
             assertEquals(3, cuentaDePrueba.getNumSesiones(), "Se incrementó el número de sesiones");
             assertFalse(resultado);
+        }
+    }
+
+    @Nested
+    @DisplayName("Tests Historial de Transacciones")
+    class testHistorial {
+        @Test
+        public void testGetHistorialTransaccionesVacio() {
+            // Given
+            ArrayList<String> listaDePrueba = new ArrayList<String>();
+
+            // When
+            ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
+
+            // Then
+            assertEquals(listaDePrueba, listaObtenida);
+        }
+
+        @Test
+        public void testGetHistorialTransaccionesConOperaciones() {
+            // Given
+            ArrayList<String> listaDePrueba = new ArrayList<String>();
+
+            // When
+            cuentaDePrueba.agregarAHistorial(0);
+            cuentaDePrueba.agregarAHistorial(-1);
+            cuentaDePrueba.agregarAHistorial(1);
+            ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
+
+            // Then
+            assertEquals(listaDePrueba, listaObtenida);
+        }
+
+        @Test
+        public void testAgregarAHistorial() {
+            // Given
+
+            // When
+
+            // Then
+
         }
     }
 }
