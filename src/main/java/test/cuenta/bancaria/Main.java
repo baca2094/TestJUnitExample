@@ -81,6 +81,7 @@ public class Main {
                     // Fallo
                     else {
                         System.out.println("No es posible depositar ese monto. Por favor inténtelo nuevamente.");
+                        continue;
                     }
                     break;
                 }
@@ -134,6 +135,7 @@ public class Main {
                     // Fallo
                     else {
                         System.out.println("No es posible retirar ese monto. Por favor inténtelo nuevamente.");
+                        continue;
                     }
                     break;
                 }
