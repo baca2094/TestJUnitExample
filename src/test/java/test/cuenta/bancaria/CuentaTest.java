@@ -498,7 +498,6 @@ class CuentaTest {
             cuentaDePrueba.incrementNumOperacionesSesion();
             cuentaDePrueba.incrementNumOperacionesSesion();
             cuentaDePrueba.incrementNumOperacionesSesion();
-            cuentaDePrueba.incrementNumOperacionesSesion();
             boolean resultado = cuentaDePrueba.incrementNumOperacionesSesion();
 
             // Then
@@ -535,7 +534,6 @@ class CuentaTest {
             // Given
 
             // When
-            cuentaDePrueba.incrementNumSesiones();
             cuentaDePrueba.incrementNumSesiones();
             cuentaDePrueba.incrementNumSesiones();
             boolean resultado = cuentaDePrueba.incrementNumSesiones();

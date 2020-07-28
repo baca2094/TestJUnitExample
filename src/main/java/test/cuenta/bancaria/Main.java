@@ -8,7 +8,6 @@ public class Main {
         Cuenta cuenta = new Cuenta();
         Scanner inputScanner = new Scanner(System.in);
         String input;
-        cuenta.incrementNumSesiones();
         boolean cerrarSesion;
         boolean opcionValida;
         // Pantalla
@@ -71,7 +70,6 @@ public class Main {
                     boolean resultado = cuenta.deposit(amount, cuentaEnUSD);
                     // Éxito transacción
                     if (resultado) {
-                        cuenta.incrementNumOperacionesSesion();
                         cuenta.agregarAHistorial(1, tipoCuenta, amount);
                         boolean resultadoOperacion = cuenta.incrementNumOperacionesSesion();
                         if (!resultadoOperacion) {
@@ -125,7 +123,6 @@ public class Main {
                     boolean resultado = cuenta.withdraw(amount, cuentaEnUSD);
                     // Éxito transacción
                     if (resultado) {
-                        cuenta.incrementNumOperacionesSesion();
                         cuenta.agregarAHistorial(-1, tipoCuenta, amount);
                         boolean resultadoOperacion = cuenta.incrementNumOperacionesSesion();
                         if (!resultadoOperacion) {
@@ -144,7 +141,9 @@ public class Main {
             // Ver transacciones
             if (intInput == 3) {
                 opcionValida = true;
+                System.out.println("\n Historial de Transacciones:");
                 cuenta.imprimirHistorial();
+                System.out.println();
             }
             // Cerrar sesión
             if ((intInput == 4) || (cerrarSesion)) {

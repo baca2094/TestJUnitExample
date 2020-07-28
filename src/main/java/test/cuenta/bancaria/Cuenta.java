@@ -135,10 +135,10 @@ public class Cuenta {
     }
 
     public boolean incrementNumOperacionesSesion() {
+        this.numOperacionesSesion++;
         if (this.numOperacionesSesion == 4) {
             return false;
         }
-        this.numOperacionesSesion++;
         return true;
     }
 
@@ -147,10 +147,10 @@ public class Cuenta {
     }
 
     public boolean incrementNumSesiones() {
+        this.numSesiones++;
         if (this.numSesiones == 3) {
             return false;
         }
-        this.numSesiones++;
         return true;
     }
 
