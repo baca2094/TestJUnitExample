@@ -563,6 +563,62 @@ class CuentaTest {
         }
 
         @Test
+        public void testAgregarAHistorialDepositoCLP() {
+            // Given
+            String esperado = "Realizado depósito de CLP 100. Saldo actual: CLP 1000000 USD 1000";
+
+            // When
+            cuentaDePrueba.agregarAHistorial(1, 1, 100);
+            ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
+            String lastTransaccion = listaObtenida.get(listaObtenida.size() - 1);
+
+            // Then
+            assertTrue(lastTransaccion.contains(esperado));
+        }
+
+        @Test
+        public void testAgregarAHistorialDepositoUSD() {
+            // Given
+            String esperado = "Realizado depósito de USD 100. Saldo actual: CLP 1000000 USD 1000";
+
+            // When
+            cuentaDePrueba.agregarAHistorial(1, 0, 100);
+            ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
+            String lastTransaccion = listaObtenida.get(listaObtenida.size() - 1);
+
+            // Then
+            assertTrue(lastTransaccion.contains(esperado));
+        }
+
+        @Test
+        public void testAgregarAHistorialRetiroCLP() {
+            // Given
+            String esperado = "Realizado retiro de CLP 100. Saldo actual: CLP 1000000 USD 1000";
+
+            // When
+            cuentaDePrueba.agregarAHistorial(-1, 1, 100);
+            ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
+            String lastTransaccion = listaObtenida.get(listaObtenida.size() - 1);
+
+            // Then
+            assertTrue(lastTransaccion.contains(esperado));
+        }
+
+        @Test
+        public void testAgregarAHistorialRetiroUSD() {
+            // Given
+            String esperado = "Realizado retiro de USD 100. Saldo actual: CLP 1000000 USD 1000";
+
+            // When
+            cuentaDePrueba.agregarAHistorial(-1, 0, 100);
+            ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
+            String lastTransaccion = listaObtenida.get(listaObtenida.size() - 1);
+
+            // Then
+            assertTrue(lastTransaccion.contains(esperado));
+        }
+
+        @Test
         public void testGetHistorialTransaccionesDeposito() {
             // Given
             String esperado = "Realizado depósito de USD 100. Saldo actual: CLP 1000000 USD 1000";
@@ -571,7 +627,6 @@ class CuentaTest {
             cuentaDePrueba.agregarAHistorial(1, 0, 100);
             ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
             String lastTransaccion = listaObtenida.get(listaObtenida.size() - 1);
-            System.out.println(lastTransaccion);
 
             // Then
             assertTrue(lastTransaccion.contains(esperado));
@@ -586,7 +641,6 @@ class CuentaTest {
             cuentaDePrueba.agregarAHistorial(-1, 1, 100);
             ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
             String lastTransaccion = listaObtenida.get(listaObtenida.size() - 1);
-            System.out.println(lastTransaccion);
 
             // Then
             assertTrue(lastTransaccion.contains(esperado));
@@ -597,18 +651,10 @@ class CuentaTest {
             // Given
 
             // When
-
+            cuentaDePrueba.agregarAHistorial(1, 0, 100);
+            cuentaDePrueba.agregarAHistorial(-1, 1, 100);
             // Then
-        }
-
-        @Test
-        public void testAgregarAHistorial() {
-            // Given
-
-            // When
-
-            // Then
-
+            assertDoesNotThrow(() -> cuentaDePrueba.imprimirHistorial());
         }
     }
 }

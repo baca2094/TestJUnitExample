@@ -157,7 +157,7 @@ public class Cuenta {
     // Historial de transacciones
 
     public void imprimirHistorial() {
-        String stringAImprimir = String.join("", this.historialTransacciones);
+        String stringAImprimir = String.join("\n", this.historialTransacciones);
         System.out.println(stringAImprimir);
     }
 
@@ -195,14 +195,12 @@ public class Cuenta {
 
         // Depósito
         if (tipoTransaccion == 1) {
-            System.out.print("Entre a deposito");
             log = dateTimeActual+" Realizado depósito de "+cuenta+" "+ Integer.toString(monto)+
                     ". Saldo actual: CLP "+Integer.toString(this.saldoCLP)+
                     " USD "+Integer.toString(this.saldoUSD);
         }
         // Retiro
         else if (tipoTransaccion == -1) {
-            System.out.print("Entre a retiro");
             log = dateTimeActual+" Realizado retiro de "+cuenta+" "+ Integer.toString(monto)+
                     ". Saldo actual: CLP "+Integer.toString(this.saldoCLP)+
                     " USD "+Integer.toString(this.saldoUSD);
