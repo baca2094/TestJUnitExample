@@ -10,9 +10,11 @@ public class Main {
         String input;
         cuenta.incrementNumSesiones();
         boolean cerrarSesion;
+        boolean opcionValida;
         // Pantalla
         while (true) {
             cerrarSesion = false;
+            opcionValida = false;
             System.out.println("\nBienvenido a Banco Azul, selecciona operación a realizar:");
             // Opciones
             System.out.println("\"1\": Depósito");
@@ -33,6 +35,7 @@ public class Main {
 
             // Depósito
             if (intInput == 1) {
+                opcionValida = true;
                 while (true) {
                     System.out.println("Ingrese Monto a depositar y moneda, formato (Currency Amount)");
                     input = inputScanner.nextLine().trim();
@@ -74,6 +77,7 @@ public class Main {
                         if (!resultadoOperacion) {
                             System.out.println("No le quedan más operaciones, se ha cerrado la sesión.");
                             cuenta.resetNumOperacionesSesion();
+                            cerrarSesion = true;
                         }
                     }
                     // Fallo
@@ -84,7 +88,8 @@ public class Main {
                 }
             }
             // Retiro
-            else if (intInput == 2) {
+            if (intInput == 2) {
+                opcionValida = true;
                 while (true) {
                     System.out.println("Ingrese Monto a retirar y moneda, formato (Currency Amount)");
                     input = inputScanner.nextLine().trim();
@@ -126,6 +131,7 @@ public class Main {
                         if (!resultadoOperacion) {
                             System.out.println("No le quedan más operaciones, se ha cerrado la sesión.");
                             cuenta.resetNumOperacionesSesion();
+                            cerrarSesion = true;
                         }
                     }
                     // Fallo
@@ -136,11 +142,13 @@ public class Main {
                 }
             }
             // Ver transacciones
-            else if (intInput == 3) {
+            if (intInput == 3) {
+                opcionValida = true;
                 cuenta.imprimirHistorial();
             }
             // Cerrar sesión
-            else if ((intInput == 4) || (cerrarSesion)) {
+            if ((intInput == 4) || (cerrarSesion)) {
+                opcionValida = true;
                 // Terminar sesión
                 boolean resultado = cuenta.incrementNumSesiones();
                 // No hay más sesiones
@@ -165,7 +173,7 @@ public class Main {
                 }
             }
             // Error
-            else {
+            if (!opcionValida) {
                 System.out.println("Opción inválida. Por favor inténtelo nuevamente.");
                 continue;
             }
