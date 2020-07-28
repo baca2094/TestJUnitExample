@@ -552,28 +552,53 @@ class CuentaTest {
         @Test
         public void testGetHistorialTransaccionesVacio() {
             // Given
-            ArrayList<String> listaDePrueba = new ArrayList<String>();
+            String esperado = "La cuenta ha sido creada. Saldo inicial: CLP 1000000 USD 1000";
 
             // When
             ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
+            String lastTransaccion = listaObtenida.get(listaObtenida.size() - 1);
 
             // Then
-            assertEquals(listaDePrueba, listaObtenida);
+            assertTrue(lastTransaccion.contains(esperado));
         }
 
         @Test
-        public void testGetHistorialTransaccionesConOperaciones() {
+        public void testGetHistorialTransaccionesDeposito() {
             // Given
-            ArrayList<String> listaDePrueba = new ArrayList<String>();
+            String esperado = "Realizado depósito de USD 100. Saldo actual: CLP 1000000 USD 1000";
 
             // When
-            cuentaDePrueba.agregarAHistorial(0);
-            cuentaDePrueba.agregarAHistorial(-1);
-            cuentaDePrueba.agregarAHistorial(1);
+            cuentaDePrueba.agregarAHistorial(1, 0, 100);
             ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
+            String lastTransaccion = listaObtenida.get(listaObtenida.size() - 1);
+            System.out.println(lastTransaccion);
 
             // Then
-            assertEquals(listaDePrueba, listaObtenida);
+            assertTrue(lastTransaccion.contains(esperado));
+        }
+
+        @Test
+        public void testGetHistorialTransaccionesRetiro() {
+            // Given
+            String esperado = "Realizado retiro de CLP 100. Saldo actual: CLP 1000000 USD 1000";
+
+            // When
+            cuentaDePrueba.agregarAHistorial(-1, 1, 100);
+            ArrayList<String> listaObtenida = cuentaDePrueba.getHistorialTransacciones();
+            String lastTransaccion = listaObtenida.get(listaObtenida.size() - 1);
+            System.out.println(lastTransaccion);
+
+            // Then
+            assertTrue(lastTransaccion.contains(esperado));
+        }
+
+        @Test
+        public void testImprimirHistorial() {
+            // Given
+
+            // When
+
+            // Then
         }
 
         @Test

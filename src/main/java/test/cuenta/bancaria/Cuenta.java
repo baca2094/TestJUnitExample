@@ -20,7 +20,7 @@ public class Cuenta {
         this.numOperacionesSesion = 0;
         this.numSesiones = 0;
         this.historialTransacciones = new ArrayList<String>();
-        this.agregarAHistorial(0);
+        this.agregarAHistorial();
     }
 
     public Cuenta(int saldoCLPInicial, int saldoUSDInicial) {
@@ -29,7 +29,7 @@ public class Cuenta {
         this.numOperacionesSesion = 0;
         this.numSesiones = 0;
         this.historialTransacciones = new ArrayList<String>();
-        this.agregarAHistorial(0);
+        this.agregarAHistorial();
     }
 
     // Getters
@@ -156,27 +156,58 @@ public class Cuenta {
 
     // Historial de transacciones
 
-    // Según tipo de transacción:
-    // 0: Creación
-    // 1: Depósito
-    // -1: Retiro
-    public void agregarAHistorial(int tipoTransaccion) {
+    public void imprimirHistorial() {
+        String stringAImprimir = String.join("", this.historialTransacciones);
+        System.out.println(stringAImprimir);
+    }
+
+    // Creación cuenta
+    public void agregarAHistorial() {
+        // Manejo tiempo
         String dateTimeActual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS"));
         dateTimeActual = "["+dateTimeActual+"]";
-        System.out.println(dateTimeActual);
-        switch (tipoTransaccion) {
-            // Creación cuenta
-            case (0): {
 
-            }
-            // Depósito
-            case (1): {
+        // Manejo historial según tipo transacción
+        String log = dateTimeActual+" La cuenta ha sido creada. Saldo inicial: CLP "+
+                Integer.toString(this.saldoCLP)+ " USD "+Integer.toString(this.saldoUSD);
+        this.historialTransacciones.add(log);
+    }
 
-            }
-            // Retiro
-            case (-1): {
+    // Según tipo de transacción:
+    // 1: Depósito
+    // -1: Retiro
+    public void agregarAHistorial(int tipoTransaccion, int tipoCuenta, int monto) {
+        // Manejo tiempo
+        String dateTimeActual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS"));
+        dateTimeActual = "["+dateTimeActual+"]";
 
-            }
+        // Tipo de Cuenta USD o CLP
+        String cuenta;
+        if (tipoCuenta == 1) {
+            cuenta = "CLP";
         }
+        else {
+            cuenta = "USD";
+        }
+
+        // Manejo historial según tipo transacción
+        String log = "";
+
+        // Depósito
+        if (tipoTransaccion == 1) {
+            System.out.print("Entre a deposito");
+            log = dateTimeActual+" Realizado depósito de "+cuenta+" "+ Integer.toString(monto)+
+                    ". Saldo actual: CLP "+Integer.toString(this.saldoCLP)+
+                    " USD "+Integer.toString(this.saldoUSD);
+        }
+        // Retiro
+        else if (tipoTransaccion == -1) {
+            System.out.print("Entre a retiro");
+            log = dateTimeActual+" Realizado retiro de "+cuenta+" "+ Integer.toString(monto)+
+                    ". Saldo actual: CLP "+Integer.toString(this.saldoCLP)+
+                    " USD "+Integer.toString(this.saldoUSD);
+        }
+
+        this.historialTransacciones.add(log);
     }
 }
