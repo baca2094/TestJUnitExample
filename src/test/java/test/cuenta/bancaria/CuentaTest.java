@@ -22,7 +22,7 @@ class CuentaTest {
         cuentaDePrueba = new Cuenta();
         cuentaVacia = new Cuenta(0, 0);
         saldoInicialCLP = 1000000;
-        saldoInicialUSD = 10000;
+        saldoInicialUSD = 1000;
     }
 
     @Test
